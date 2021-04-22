@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Drawer from '../Drawer/Drawer';
+import Collection from '../Collection/Collection';
 
 import { makeStyles } from '@material-ui/core';
 
@@ -38,7 +39,7 @@ function App() {
     <Router>
       <div>
         <Nav />
-        <Drawer />
+        {/* <Drawer /> */}
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -50,6 +51,14 @@ function App() {
             path="/about"
           >
             <AboutPage />
+          </Route>
+
+          <Route
+            // shows AboutPage at all times (logged in or not)
+            exact
+            path="/collection"
+          >
+            <Collection />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
