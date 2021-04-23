@@ -22,11 +22,16 @@ router.get('/:id', (req, res) =>{
     })
 });
 
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
 
+router.post('/', (req, res) => {
+    const queryText = `INSERT INTO "collection" ( "album_id", "user_id", "comments", "rating") 
+    VALUES ($1, $2, $3, $4 )`;
+    pool.query(queryText, [req.body.album_id, req.body.user_id, req.body.comments, req.body.rating])
+        .then(() => res.sendStatus(201))
+        .catch((err) => {
+        console.log('Collection POST failed ', err);
+        res.sendStatus(500);
+    });
 });
 
 module.exports = router;
