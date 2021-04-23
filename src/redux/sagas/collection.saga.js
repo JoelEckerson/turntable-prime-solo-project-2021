@@ -3,8 +3,8 @@ import axios from 'axios';
 
 function* fetchCollection(action){
     try {
-            console.log('In collectionSaga() saga generator.  id = ', action);
-            const collection = yield axios.get('/api/collection/');
+            console.log('In collectionSaga() saga generator.  id = ', action.payload.userId);
+            const collection = yield axios.get('/api/collection/' + action.payload.userId );
             console.log('In collectionSaga() saga generator. collection data = ', collection.data);
             yield put({ type: 'FETCH_COLLECTION', payload: collection.data });
     } catch {

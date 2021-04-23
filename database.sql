@@ -12,6 +12,7 @@ CREATE TABLE "user" (
     "bio" VARCHAR (1000)
 );
 
+-- Create a table to hold the main 
 CREATE TABLE "album" (
     "id" SERIAL PRIMARY KEY,
     "artist" VARCHAR (80) NOT NULL,

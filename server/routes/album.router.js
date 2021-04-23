@@ -5,7 +5,7 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/artist', (req, res) =>{
+router.get('/artist/:artist', (req, res) =>{
     const query = `SELECT * FROM "album" WHERE artist=$1`;
     console.log('in album artist', req.params.artist);
     pool.query(query, [req.params.artist])
@@ -18,7 +18,7 @@ router.get('/artist', (req, res) =>{
     })
 });
 
-router.get('/album', (req, res) =>{
+router.get('/album/:album/', (req, res) =>{
     const query = `SELECT * FROM "album" WHERE album=$1`;
     console.log('in album album', req.params.album);
     pool.query(query, [req.params.album])
@@ -31,7 +31,7 @@ router.get('/album', (req, res) =>{
     })
 });
 
-router.get('/:genre', (req, res) =>{
+router.get('/genre/:genre/', (req, res) =>{
     const query = `SELECT * FROM "album" WHERE genre=$1`;
     console.log('in album genre', req.params.genre);
     pool.query(query, [req.params.genre])
@@ -44,7 +44,7 @@ router.get('/:genre', (req, res) =>{
     })
 });
 
-router.get('/year', (req, res) =>{
+router.get('/year/:year', (req, res) =>{
     const query = `SELECT * FROM "album" WHERE year=$1`;
     console.log('in album year', req.params.year);
     pool.query(query, [req.params.year])
