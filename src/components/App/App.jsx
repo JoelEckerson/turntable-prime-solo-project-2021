@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Drawer from '../Drawer/Drawer';
 import Collection from '../Collection/Collection';
+import Wantlist from '../Wantlist/Wantlist';
 
 import { makeStyles } from '@material-ui/core';
 
@@ -59,6 +60,14 @@ function App() {
             path="/collection"
           >
             <Collection />
+          </Route>
+
+          <Route
+            // shows AboutPage at all times (logged in or not)
+            exact
+            path="/wantlist"
+          >
+            <Wantlist />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
