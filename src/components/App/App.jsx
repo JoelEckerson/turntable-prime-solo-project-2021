@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import Drawer from '../Drawer/Drawer';
 import Collection from '../Collection/Collection';
 import Wantlist from '../Wantlist/Wantlist';
+import Search from '../Search/Search';
 
 import { makeStyles } from '@material-ui/core';
 
@@ -80,6 +81,14 @@ function App() {
             path="/user"
           >
             <UserPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/search"
+          >
+            <Search />
           </ProtectedRoute>
 
           <ProtectedRoute

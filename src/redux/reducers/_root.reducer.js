@@ -3,6 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import collection from './collection.reducer';
 import wantlist from './wantlist.reducer';
+import search from './search.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   collection, // will display the users collection
   wantlist, // will display the users wantlist
+  search, // will display search results
 });
 
 export default rootReducer;

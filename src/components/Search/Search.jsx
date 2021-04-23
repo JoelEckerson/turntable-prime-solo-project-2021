@@ -6,26 +6,41 @@ function Search() {
 
     const dispatch = useDispatch();
     const[name, setName] = useState('');
+    const search = useSelector( store => store.search); 
 
-    const collectionInput = () =>{
-        console.log('in collectionInput', event.target.value);
+    const searchInput = () =>{
+        console.log('in searchInput', event.target.value);
         setName(event.target.value);
     }
 
     const searchRecords = (name) =>{
-        dispatch({type: 'SEARCH_RECORD_SAGA', payload: name});
+        dispatch({type: 'FETCH_SEARCH_SAGA', payload: name});
         setName('');
     }
 
 
+
+
     return (
         <div>
-            <input id="collectionInput" type="text" placeholder="Search For"
-                onChange={collectionInput} value={name}/>
-            <button onClick={()=>searchRecords(name)}>Search</button>
-            button
+            <input id="searchInput" type="text" placeholder="Search For"
+                onChange={searchInput} value={name}/>
+            <button onClick={()=>searchRecords(name)}>Search</button>  
+            {search.length > 0 }
+                {search.map(record => {
+                    return(
+                        <div key={record.album_id} >
+                            <h3>{record.artist}</h3>
+                            <h4>{record.album}</h4>
+                            <h4>{record.genre}</h4>
+                            <h4>{record.year}</h4>
+                            <img onClick={()=>clickRecord(record.album_id)} src={record.image_url} alt={record.album}/>
+                        </div>
+                    )
+                    })}
+            
         </div>
     )
 }
 
-export default Search
+export default Search;
