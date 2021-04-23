@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const albumRouter = require('./routes/album.router');
 const collectionRouter = require('./routes/collection.router');
 const wantlistRouter = require('./routes/wantlist.router');
+const searchRouter = require('./routes/search.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use('/api/user', userRouter);
 app.use('/api/album', albumRouter);
 app.use('/api/collection', collectionRouter);
 app.use('/api/wantlist', wantlistRouter);
+app.use('/api/search', searchRouter);
 
 // Serve static files
 app.use(express.static('build'));
