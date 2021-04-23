@@ -9,13 +9,13 @@ router.get('/:search', (req, res) =>{
     OR "album" LIKE '%' || $1 || '%' 
     OR "genre" LIKE '%' || $1 || '%' 
     OR "year" LIKE '%' || $1 || '%';`;
-    console.log('in collection', req.params.search);
+    console.log('in Search', req.params.search);
     pool.query(query, [req.params.search])
     .then( result => {
         res.send(result.rows);
     })
     .catch(err => {
-        console.log('ERROR: Get Collection', err);
+        console.log('ERROR: Get Search', err);
         res.sendStatus(500)
     })
 });
