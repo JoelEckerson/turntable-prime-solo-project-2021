@@ -7,6 +7,7 @@ import {
     ListItemText 
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import {withRouter} from 'react-router-dom';
 
 
 
@@ -15,30 +16,29 @@ const useStyles = makeStyles({
     drawer: {
         width: '190px'
     }
-})
+});
 
-function Drawer() {
+
+
+function Drawer(props) {
+    const {history} = props;
     const classes = useStyles();
     // this variable with hold an array of objects to be mapped through for the drawer
     const itemsList = [{
             text: 'Home',
-            
+            onClick: () => history.push("/")
         },
         {
             text: 'Wantlist',
-            
+            onClick: () => history.push("/wantlist")
         },
         {
             text: 'Collection',
-            
+            onClick: () => history.push("/collection")
         },
         {
             text: 'Search',
-            
-        },
-        {
-            text: 'Add Record',
-            
+            onClick: () => history.push("/search")
         },
         {
             text: 'Recommendations',
@@ -50,12 +50,12 @@ function Drawer() {
     return (
         <div>
             {/* this creates the Material UI drawer */}
-            <MUIDrawer variant="temporary" className = {classes.drawer}>
+            <MUIDrawer variant="permanent" className = {classes.drawer}>
             <List>
                 {itemsList.map((item, index) => {
-                const { text, icon } = item;
+                const { text, icon, onClick } = item;
                 return (
-                <ListItem button key={text}>
+                <ListItem button key={text} onClick={onClick}>
                     {/* {icon && <ListItemIcon>{icon}</ListItemIcon>} */}
                     <ListItemText primary={text} />
                 </ListItem>
@@ -66,4 +66,4 @@ function Drawer() {
     )
 }
 
-export default Drawer
+export default withRouter(Drawer);
