@@ -3,9 +3,22 @@ import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import {useSelector} from 'react-redux';
+import { 
+  Typography, 
+  AppBar, 
+  Button,
+  Card, CardActions, CardContent, CardMedia, 
+  CssBaseline, 
+  Grid, 
+  Toolbar, 
+  Container 
+} from '@material-ui/core';
+import { PhotoCamera } from '@material-ui/icons';
+import useStyles from '../styles';
 
 function Nav() {
   const user = useSelector((store) => store.user);
+  const classes = useStyles();
 
   let loginLinkData = {
     path: '/login',
@@ -17,30 +30,42 @@ function Nav() {
     loginLinkData.text = 'Home';
   }
 
+
   return (
-    <div className="nav">
-      <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
-      </Link>
-      <div>
-        <Link className="navLink" to={loginLinkData.path}>
-          {loginLinkData.text}
-        </Link>
+    // <div className="nav">
+    //   <Link to="/home">
+    //     <h2 className="nav-title">Prime Solo Project</h2>
+    //   </Link>
+    //   <div>
+    //     <Link className="navLink" to={loginLinkData.path}>
+    //       {loginLinkData.text}
+    //     </Link>
 
-        {user.id && (
-          <>
-            <Link className="navLink" to="/info">
-              Info Page
-            </Link>
-            <LogOutButton className="navLink" />
-          </>
-        )}
+    //     {user.id && (
+    //       <>
+    //         <Link className="navLink" to="/info">
+    //           Info Page
+    //         </Link>
+    //         <LogOutButton className="navLink" />
+    //       </>
+    //     )}
 
-        <Link className="navLink" to="/about">
-          About
-        </Link>
-      </div>
-    </div>
+    //     <Link className="navLink" to="/about">
+    //       About
+    //     </Link>
+    //   </div>
+    // </div>
+    <>
+        <CssBaseline />
+            <AppBar position="relative">
+                <Toolbar>
+                    <PhotoCamera className={classes.icon} />
+                    <Typography variant="h6">
+                        Photo Album
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+    </>
   );
 }
 

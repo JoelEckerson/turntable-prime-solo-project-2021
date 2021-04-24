@@ -50,7 +50,7 @@ function Drawer() {
     return (
         <div>
             {/* this creates the Material UI drawer */}
-            <MUIDrawer variant="permanent" className = {classes.drawer}>
+            <MUIDrawer variant="temporary" className = {classes.drawer}>
             <List>
                 {itemsList.map((item, index) => {
                 const { text, icon } = item;
