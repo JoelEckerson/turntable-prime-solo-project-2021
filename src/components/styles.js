@@ -6,10 +6,24 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(8, 0, 6)
     },
     icon: {
-
+        marginRight: '20px',
     },
     buttons: {
-
+        marginTop: '40px',
+    },
+    cardGrid: {
+        padding: '20x 0'
+    },
+    card:{
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column'
+    },
+    cardMedia:{
+        paddingTop: '56.25%' //16:9 ratio
+    },
+    cardContent:{
+        flexGrow: 1,
     }
 }));
 
