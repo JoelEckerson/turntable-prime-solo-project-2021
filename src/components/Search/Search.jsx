@@ -29,7 +29,7 @@ function Search() {
             {search.length > 0 }
                 {search.map(record => {
                     return(
-                        <div key={record.album_id} >
+                        <div key={record.id} >
                             <h3>{record.artist}</h3>
                             <h4>{record.album}</h4>
                             <h4>{record.genre}</h4>

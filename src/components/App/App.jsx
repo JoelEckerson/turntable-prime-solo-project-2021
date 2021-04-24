@@ -23,6 +23,7 @@ import Drawer from '../Drawer/Drawer';
 import Collection from '../Collection/Collection';
 import Wantlist from '../Wantlist/Wantlist';
 import Search from '../Search/Search';
+import Test from '../Test/Test';
 
 import { makeStyles } from '@material-ui/core';
 
@@ -89,6 +90,14 @@ function App() {
             path="/search"
           >
             <Search />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/test"
+          >
+            <Test />
           </ProtectedRoute>
 
           <ProtectedRoute

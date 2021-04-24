@@ -5,10 +5,10 @@ const router = express.Router();
 
 router.get('/:search', (req, res) =>{
     const query = `SELECT * FROM "album" 
-    WHERE "artist" LIKE '%' || $1 || '%' 
-    OR "album" LIKE '%' || $1 || '%' 
-    OR "genre" LIKE '%' || $1 || '%' 
-    OR "year" LIKE '%' || $1 || '%';`;
+    WHERE UPPER("artist") LIKE UPPER('%' || $1 || '%') 
+    OR UPPER("album") LIKE UPPER('%' || $1 || '%') 
+    OR UPPER("genre") LIKE UPPER('%' || $1 || '%') 
+    OR UPPER("year") LIKE UPPER('%' || $1 || '%');`;
     console.log('in Search', req.params.search);
     pool.query(query, [req.params.search])
     .then( result => {
