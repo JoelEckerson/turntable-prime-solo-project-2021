@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import {useHistory} from 'react-router-dom';
 import { 
     Typography, 
     AppBar, 
@@ -15,7 +16,7 @@ import useStyles from '../styles';
 
 
 function wantlist() {
-
+    const history = useHistory();
     const dispatch = useDispatch();
     const wantlist = useSelector( store => store.wantlist); 
     const user = useSelector((store) => store.user);
@@ -29,10 +30,10 @@ function wantlist() {
     });
     }, []);
 
-    const clickRecord = (id) =>{
-        dispatch({ type: 'FETCH_RECORD', payload:id });
-        console.log('in clickRecord', id );
-        //history.push();
+    const clickCollection = (record) =>{
+        dispatch({ type: 'FETCH_RECORD', payload: record });
+        console.log('in clickRecord', record);
+        history.push('/record');
     }
 
     if (wantlist[0] === undefined) {
@@ -44,23 +45,12 @@ function wantlist() {
 
     return (
         <div>
-                {/* {wantlist.map(record => {
-                    return(
-                        <div key={record.album_id} >
-                            <h3>{record.artist}</h3>
-                            <h4>{record.album}</h4>
-                            <h4>{record.genre}</h4>
-                            <h4>{record.year}</h4>
-                            <img onClick={()=>clickRecord(record.album_id)} src={record.image_url} alt={record.album}/>
-                        </div>
-                    )
-                })} */}
             <Container className={classes.cardGrid} maxWidth="md">
                         <Grid container spacing={4}>
                             {wantlist.map((record)=>(
                                 <Grid item key={record.album_id} xs={12} sm={6} md={4}>
                                 <Card className={classes.card}>
-                                    <CardMedia 
+                                    <CardMedia onClick={event => {clickCollection(record)}}
                                         className={classes.cardMedia}
                                         image={record.image_url}
                                         title={record.artist}

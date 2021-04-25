@@ -13,9 +13,10 @@ import {
 } from '@material-ui/core';
 import { PhotoCamera } from '@material-ui/icons';
 import useStyles from '../styles';
+import { useHistory } from 'react-router-dom';
 
 function Search() {
-
+    const history = useHistory();
     const dispatch = useDispatch();
     const[name, setName] = useState('');
     const search = useSelector( store => store.search); 
@@ -31,7 +32,11 @@ function Search() {
         setName('');
     }
 
-
+    const clickCollection = (record) =>{
+        dispatch({ type: 'FETCH_RECORD', payload: record });
+        console.log('in clickRecord', record);
+        history.push('/record');
+    }
 
 
     return (
@@ -39,24 +44,12 @@ function Search() {
             <input id="searchInput" type="text" placeholder="Search For"
                 onChange={searchInput} value={name}/>
             <button onClick={()=>searchRecords(name)}>Search</button>  
-            {/* {search.length > 0 }
-                {search.map(record => {
-                    return(
-                        <div key={record.id} >
-                            <h3>{record.artist}</h3>
-                            <h4>{record.album}</h4>
-                            <h4>{record.genre}</h4>
-                            <h4>{record.year}</h4>
-                            <img onClick={()=>clickRecord(record.album_id)} src={record.image_url} alt={record.album}/>
-                        </div>
-                    )
-                    })} */}
             <Container className={classes.cardGrid} maxWidth="md">
                         <Grid container spacing={4}>
                             {search.map((record)=>(
                                 <Grid item key={record.album_id} xs={12} sm={6} md={4}>
                                 <Card className={classes.card}>
-                                    <CardMedia 
+                                    <CardMedia onClick={event => {clickCollection(record)}} 
                                         className={classes.cardMedia}
                                         image={record.image_url}
                                         title={record.artist}

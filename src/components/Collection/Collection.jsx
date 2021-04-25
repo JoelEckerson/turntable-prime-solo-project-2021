@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import {useHistory} from 'react-router-dom';
 import { 
     Typography, 
     AppBar, 
@@ -14,8 +15,9 @@ import {
 import { PhotoCamera } from '@material-ui/icons';
 import useStyles from '../styles';
 
-function Collection() {
 
+function Collection() {
+    const history = useHistory();
     const dispatch = useDispatch();
     const collection = useSelector( store => store.collection); 
     const user = useSelector((store) => store.user);
@@ -29,10 +31,10 @@ function Collection() {
     });
     }, []);
 
-    const clickCollection = () =>{
-        // dispatch({ type: 'FETCH_RECORD', payload:id });
-        console.log('in clickRecord' );
-        //history.push();
+    const clickCollection = (record) =>{
+        dispatch({ type: 'FETCH_RECORD', payload: record });
+        console.log('in clickRecord', record);
+        history.push('/record');
     }
 
     if (collection[0] === undefined) {
@@ -49,8 +51,7 @@ function Collection() {
                             {collection.map((record)=>(
                                 <Grid item key={record.album_id} xs={12} sm={6} md={4}>
                                 <Card className={classes.card}>
-                                    
-                                    <CardMedia onClick={event => {clickCollection()}} 
+                                    <CardMedia onClick={event => {clickCollection(record)}} 
                                         className={classes.cardMedia}
                                         image={record.image_url}
                                         title={record.artist}
