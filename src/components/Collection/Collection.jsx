@@ -8,12 +8,11 @@ import {
     CssBaseline, 
     Grid, 
     Toolbar, 
-    Container 
+    Container, 
+    ButtonBase
 } from '@material-ui/core';
 import { PhotoCamera } from '@material-ui/icons';
 import useStyles from '../styles';
-
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 function Collection() {
 
@@ -30,9 +29,9 @@ function Collection() {
     });
     }, []);
 
-    const clickRecord = (id) =>{
-        dispatch({ type: 'FETCH_RECORD', payload:id });
-        console.log('in clickRecord', id );
+    const clickCollection = () =>{
+        // dispatch({ type: 'FETCH_RECORD', payload:id });
+        console.log('in clickRecord' );
         //history.push();
     }
 
@@ -45,23 +44,13 @@ function Collection() {
 
     return (
         <div>
-                {/* {collection.map(record => {
-                    return(
-                        <div key={record.album_id} >
-                            <h3>{record.artist}</h3>
-                            <h4>{record.album}</h4>
-                            <h4>{record.genre}</h4>
-                            <h4>{record.year}</h4>
-                            <img onClick={()=>clickRecord(record.album_id)} src={record.image_url} alt={record.album}/>
-                        </div>
-                    )
-                })} */}
                     <Container className={classes.cardGrid} maxWidth="md">
                         <Grid container spacing={4}>
                             {collection.map((record)=>(
                                 <Grid item key={record.album_id} xs={12} sm={6} md={4}>
                                 <Card className={classes.card}>
-                                    <CardMedia 
+                                    
+                                    <CardMedia onClick={event => {clickCollection()}} 
                                         className={classes.cardMedia}
                                         image={record.image_url}
                                         title={record.artist}
@@ -81,7 +70,6 @@ function Collection() {
                                 </Card>
                             </Grid>
                             ))}
-                            
                         </Grid>
                     </Container>
 
