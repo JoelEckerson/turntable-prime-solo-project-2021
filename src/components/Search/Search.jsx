@@ -19,7 +19,8 @@ function Search() {
     const history = useHistory();
     const dispatch = useDispatch();
     const[name, setName] = useState('');
-    const search = useSelector( store => store.search); 
+    const search = useSelector( store => store.search);
+    const user = useSelector((store) => store.user); 
     const classes = useStyles();
 
     const searchInput = () =>{
@@ -63,8 +64,8 @@ function Search() {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button size="small" color="primary">View</Button>
-                                        <Button size="small" color="primary">Edit</Button>
+                                        <Button size="small" color="primary">Add Collection</Button>
+                                        <Button size="small" color="primary">Add Wantlist</Button>
                                     </CardActions>
                                 </Card>
                             </Grid>

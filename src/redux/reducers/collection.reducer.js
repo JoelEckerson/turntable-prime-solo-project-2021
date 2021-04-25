@@ -8,4 +8,5 @@ const collectionReducer = (state = [], action) => {
     }
 }
 
+
 export default collectionReducer;

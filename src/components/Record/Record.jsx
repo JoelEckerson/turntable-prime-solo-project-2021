@@ -25,6 +25,13 @@ function Record(props) {
     const user = useSelector((store) => store.user);
     const classes = useStyles();
 
+    const clickPostCollection = (record) =>{
+        record.user_id = user.id;
+        dispatch({ type: 'SET_COLLECTION_RECORD_SAGA', payload: record });
+        console.log('in clickPostCollection', record);
+        // history.push('/record');
+    }
+
     return (
         <div>
             {console.log(record)}
@@ -58,8 +65,8 @@ function Record(props) {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button size="small" color="primary">View</Button>
-                                        <Button size="small" color="primary">Edit</Button>
+                                        <Button onClick={event => {clickPostCollection(record)}} size="small" color="primary">Add Collection</Button>
+                                        <Button size="small" color="primary">Add Wantlist</Button>
                                     </CardActions>
                                 </Card>
                             </Grid>

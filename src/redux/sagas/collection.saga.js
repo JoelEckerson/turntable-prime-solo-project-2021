@@ -12,8 +12,20 @@ function* fetchCollection(action){
     }
 }
 
+function* setCollectionRecord(action){
+    try {
+            console.log('In setCollectionRecord() saga generator.  id = ', action.payload.userId);
+            const collection = yield axios.post('/api/collection/', action.payload );
+            console.log('In setCollectionRecord() saga generator. collection data = ', collection.data);
+            yield put({ type: 'SET_COLLECTION_RECORD_SAGA', payload: collection.data });
+    } catch {
+        console.log('Error in setCollectionRecord() saga generator.');
+    }
+}
+
 function* collectionSaga() {
     yield takeLatest('FETCH_COLLECTION_SAGA', fetchCollection);
+    yield takeLatest('SET_COLLECTION_RECORD_SAGA', setCollectionRecord);
 }
 
 export default collectionSaga;
