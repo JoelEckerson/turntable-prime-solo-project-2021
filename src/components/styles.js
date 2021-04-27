@@ -35,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(2),
         },
     },
+    drawer: {
+        width: '190px'
+    },
 }));
 
 export default useStyles;

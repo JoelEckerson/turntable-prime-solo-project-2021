@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import {useSelector} from 'react-redux';
 import { 
+  Drawer as MUIDrawer,
   Typography, 
   AppBar, 
   Button,
@@ -11,14 +12,31 @@ import {
   CssBaseline, 
   Grid, 
   Toolbar, 
-  Container 
+  Container,
+  ListItem, 
+  List,
+  ListItemIcon, 
+  ListItemText
 } from '@material-ui/core';
 import { PhotoCamera } from '@material-ui/icons';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 import useStyles from '../styles';
+import { useState } from 'react';
+import {withRouter} from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
 
-function Nav() {
+
+function Nav(props) {
+
   const user = useSelector((store) => store.user);
   const classes = useStyles();
+  const {history} = props;
+  const [showDrawer, setShowDrawer] = useState(false);
+
+  const toggleDrawer = (open) => (event) => {
+      setShowDrawer({open})
+  }
 
   let loginLinkData = {
     path: '/login',
@@ -30,6 +48,29 @@ function Nav() {
     loginLinkData.text = 'Home';
   }
 
+  const itemsList = [{
+    text: 'Home',
+    onClick: () => {history.push("/"), setShowDrawer(false)}
+},
+{
+    text: 'Wantlist',
+    onClick: () => {history.push("/wantlist"); setShowDrawer(false)}
+},
+{
+    text: 'Collection',
+    onClick: () => {history.push("/collection"); setShowDrawer(false)}
+},
+{
+    text: 'Search',
+    onClick: () => {history.push("/search"); setShowDrawer(false)}
+},
+{
+    text: 'Recommendations',
+    
+},
+{
+    text: 'LogOut',
+}];
 
   return (
     // <div className="nav">
@@ -59,14 +100,31 @@ function Nav() {
         <CssBaseline />
             <AppBar position="relative">
                 <Toolbar>
-                    <PhotoCamera className={classes.icon} />
+                  <IconButton edge="start" className={classes.menuButton} onClick={toggleDrawer(true)} color="inherit" aria-label="menu">
+                    <MenuIcon />
+                  </IconButton>
                     <Typography variant="h6">
-                        Photo Album
+                        TurnTable
                     </Typography>
                 </Toolbar>
             </AppBar>
+            <div>
+            {/* this creates the Material UI drawer */}
+            <MUIDrawer open={showDrawer} className = {classes.drawer}>
+            <List>
+                {itemsList.map((item, index) => {
+                const { text, icon, onClick } = item;
+                return (
+                <ListItem button key={text} onClick={onClick}>
+                    {/* {icon && <ListItemIcon>{icon}</ListItemIcon>} */}
+                    <ListItemText primary={text} />
+                </ListItem>
+                )})}
+            </List>
+            </MUIDrawer>
+        </div>
     </>
   );
 }
 
-export default Nav;
+export default withRouter(Nav);
