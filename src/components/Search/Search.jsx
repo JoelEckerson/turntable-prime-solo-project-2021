@@ -26,11 +26,17 @@ function Search() {
     const searchInput = () =>{
         console.log('in searchInput', event.target.value);
         setName(event.target.value);
+        dispatch({type: 'FETCH_SEARCH_SAGA', payload: event.target.value});
     }
 
     const searchRecords = (name) =>{
         dispatch({type: 'FETCH_SEARCH_SAGA', payload: name});
         setName('');
+    }
+
+    const typeRecord = (name) =>{
+        console.log(name)
+        // dispatch({type: 'FETCH_SEARCH_SAGA', payload: name});
     }
 
     const clickCollection = (record) =>{

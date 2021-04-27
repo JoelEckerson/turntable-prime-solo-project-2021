@@ -8,4 +8,6 @@ const collectionRecordReducer = (state = [], action) => {
     }
 }
 
+/// REMOVE THIS REDUCER
+
 export default collectionRecordReducer;
