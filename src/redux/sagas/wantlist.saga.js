@@ -12,8 +12,20 @@ function* fetchWantlist(action){
     }
 }
 
+function* setWantlistRecord(action){
+    try {
+            console.log('In setWantlistRecord() saga generator.', action.payload );
+            const wantlist = yield axios.post('/api/wantlist/', action.payload );
+            console.log('In setWantlistRecord() saga generator. wantlist data = ', wantlist.data);
+            // yield put({ type: 'SET_WANTLIST_RECORD_SAGA', payload: wantlist.data });
+    } catch {
+        console.log('Error in setWantlistRecord() saga generator.');
+    }
+}
+
 function* wantlistSaga() {
     yield takeLatest('FETCH_WANTLIST_SAGA', fetchWantlist);
+    yield takeLatest('SET_WANTLIST_RECORD_SAGA', setWantlistRecord);
 }
 
 export default wantlistSaga;

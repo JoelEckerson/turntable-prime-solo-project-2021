@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
         marginRight: 'auto',
         marginLeft: 'auto',
         marginBottom: '25px'
-        
     },
     app: {
         marginBottom: '30px'

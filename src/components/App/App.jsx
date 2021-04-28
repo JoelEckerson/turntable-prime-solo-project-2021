@@ -26,6 +26,7 @@ import Search from '../Search/Search';
 import Test from '../Test/Test';
 import Record from '../Record/Record';
 import Login from '../Login/Login';
+import Messaging from '../Messaging/Messaging';
 
 import { makeStyles } from '@material-ui/core';
 
@@ -77,6 +78,14 @@ function App() {
             path="/collection"
           >
             <Collection />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/messaging"
+          >
+            <Messaging />
           </ProtectedRoute>
  
            <ProtectedRoute

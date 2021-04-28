@@ -32,6 +32,13 @@ function Record(props) {
         // history.push('/record');
     }
 
+      const clickPostWantlist = (record) =>{
+        record.user_id = user.id;
+        dispatch({ type: 'SET_WANTLIST_RECORD_SAGA', payload: record });
+        console.log('in clickPostWantlist', record);
+        // history.push('/record');
+    }
+
     return (
         <div>
             {console.log(record)}
@@ -66,7 +73,8 @@ function Record(props) {
                                     </CardContent>
                                     <CardActions>
                                         <Button onClick={event => {clickPostCollection(record)}} size="small" color="primary">Add Collection</Button>
-                                        <Button size="small" color="primary">Add Wantlist</Button>
+                                        <Button onClick={event => {clickPostWantlist(record)}} size="small" color="primary">Add Wantlist</Button>
+                                        {/* <Button onClick={event => {clickDelete(record)}} size="small" color="primary"> */}
                                     </CardActions>
                                 </Card>
                             </Grid>

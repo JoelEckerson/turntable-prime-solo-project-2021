@@ -22,6 +22,18 @@ const router = express.Router();
     })
 });
 
+router.post('/', (req, res) => {
+    console.log( 'in wantlist POST', req.body );
+    const queryText = `INSERT INTO "wantlist" ( "album_id", "user_id") 
+    VALUES ($1, $2 );`;
+    pool.query(queryText, [req.body.id, req.body.user_id])
+        .then(() => res.sendStatus(201))
+        .catch((err) => {
+        console.log('wantlist POST failed ', err);
+        res.sendStatus(500);
+    });
+});
+
 /**
  * POST route template
  */
