@@ -14,6 +14,10 @@ import {
 import { PhotoCamera } from '@material-ui/icons';
 import useStyles from '../styles';
 import { useHistory } from 'react-router-dom';
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
+import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
 
 function Search() {
     const history = useHistory();
@@ -48,9 +52,36 @@ function Search() {
 
     return (
         <div>
-            <input id="searchInput" type="text" placeholder="Search For"
+            {/* <input id="searchInput" type="text" placeholder="Search For"
                 onChange={searchInput} value={name}/>
-            <button onClick={()=>searchRecords(name)}>Search</button>  
+            <button onClick={()=>searchRecords(name)}>Search</button>   */}
+            <form className={classes.form} noValidate>
+                <TextField
+                    variant="outlined"
+                    // inputProps={{min: 0, style: { textAlign: 'center'}}}
+                    margin="normal"
+                    required
+                    size= 'medium'
+                    fullWidth
+                    id="search"
+                    label="Search"
+                    autoFocus
+                    onChange={searchInput}
+                    value={name}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <SearchOutlinedIcon />
+                            </InputAdornment>
+                        ),
+                        endAdornment: (
+                            <InputAdornment postition="end">
+                                <ClearOutlinedIcon />
+                            </InputAdornment>
+                        ),
+                    }}
+                />
+          </form>
             <Container className={classes.cardGrid} maxWidth="md">
                         <Grid container spacing={4}>
                             {search.map((record)=>(

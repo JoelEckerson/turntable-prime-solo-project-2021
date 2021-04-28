@@ -98,7 +98,7 @@ function Nav(props) {
     // </div>
     <>
         <CssBaseline />
-            <AppBar position="relative">
+            <AppBar position="relative" className={classes.app}>
                 <Toolbar>
                   <IconButton edge="start" className={classes.menuButton} onClick={toggleDrawer(true)} color="inherit" aria-label="menu">
                     <MenuIcon />

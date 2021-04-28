@@ -25,6 +25,7 @@ import Wantlist from '../Wantlist/Wantlist';
 import Search from '../Search/Search';
 import Test from '../Test/Test';
 import Record from '../Record/Record';
+import Login from '../Login/Login';
 
 import { makeStyles } from '@material-ui/core';
 
@@ -84,6 +85,14 @@ function App() {
             path="/record"
           >
             <Record />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/signin"
+          >
+            <Login />
           </ProtectedRoute>
 
           <ProtectedRoute
