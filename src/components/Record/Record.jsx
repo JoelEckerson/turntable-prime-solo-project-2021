@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import { 
@@ -24,6 +24,10 @@ function Record(props) {
     const record = useSelector( store => store.record); 
     const user = useSelector((store) => store.user);
     const classes = useStyles();
+    const collection = useSelector( store => store.collection); 
+    const wantlist = useSelector( store => store.wantlist);
+
+
 
     const clickPostCollection = (record) =>{
         record.user_id = user.id;
@@ -32,11 +36,40 @@ function Record(props) {
         // history.push('/record');
     }
 
-      const clickPostWantlist = (record) =>{
+    const clickPostWantlist = (record) =>{
         record.user_id = user.id;
         dispatch({ type: 'SET_WANTLIST_RECORD_SAGA', payload: record });
         console.log('in clickPostWantlist', record);
         // history.push('/record');
+    }
+
+    const renderChat = () => {
+		return chat.map(({ name, message }, index) => (
+			<div key={index}>
+				<h3>
+					{name}: <span>{message}</span>
+				</h3>
+			</div>
+		))
+	}
+
+    const clickDeleteCollection = () =>{
+        record.user_id = user.id;
+        dispatch({ type: 'DELETE_COLLECTION_RECORD_SAGA', payload: record });
+        console.log('in clickDeleteCollection', record);
+    }
+
+    const switchCollectionButtons = () => {
+        let foundRecord = false
+        collection.map((asdf)=>{
+        if (record.album_id === asdf.album_id)
+                foundRecord = true
+        })
+        if (foundRecord){
+            return <Button onClick={event => {clickDeleteCollection(record)}} size="small" color="primary">Delete from Collection</Button>
+        }else{
+            return <Button onClick={event => {clickPostCollection(record)}} size="small" color="primary">Add to Collection</Button>
+        }
     }
 
     return (
@@ -72,7 +105,7 @@ function Record(props) {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button onClick={event => {clickPostCollection(record)}} size="small" color="primary">Add Collection</Button>
+                                        {switchCollectionButtons()}
                                         <Button onClick={event => {clickPostWantlist(record)}} size="small" color="primary">Add Wantlist</Button>
                                         {/* <Button onClick={event => {clickDelete(record)}} size="small" color="primary"> */}
                                     </CardActions>

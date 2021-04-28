@@ -18,10 +18,12 @@ function Messaging() {
 			return () => socketRef.current.disconnect()
 		},
 		[ chat ]
+        // console.log('messaging chat:', chat)
 	)
 
 	const onTextChange = (e) => {
 		setState({ ...state, [e.target.name]: e.target.value })
+        console.log('messaging text state:', state, 'messaging e.target.value:', e.target.value)
 	}
 
 	const onMessageSubmit = (e) => {
