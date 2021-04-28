@@ -38,14 +38,15 @@ const useStyles = makeStyles((theme) => ({
     drawer: {
         width: '190px'
     },
-    form: {
+    form1: {
         width: '80%',
         marginRight: 'auto',
         marginLeft: 'auto',
         marginBottom: '25px'
     },
     app: {
-        marginBottom: '30px'
+        marginBottom: '30px',
+        backgroundColor: '#eb4034'
     }
 }));
 

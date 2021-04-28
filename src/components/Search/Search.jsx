@@ -55,7 +55,7 @@ function Search() {
             {/* <input id="searchInput" type="text" placeholder="Search For"
                 onChange={searchInput} value={name}/>
             <button onClick={()=>searchRecords(name)}>Search</button>   */}
-            <form className={classes.form} noValidate>
+            <form className={classes.form1} noValidate>
                 <TextField
                     variant="outlined"
                     // inputProps={{min: 0, style: { textAlign: 'center'}}}

@@ -1,4 +1,4 @@
-.card {
+.card1 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 30px;
@@ -11,7 +11,7 @@ form {
   box-shadow: 0px 3px 24px -8px rgba(0, 0, 0, 0.75);
 }
 
-.name-field {
+.name-field1 {
   margin-bottom: 40px;
 }
 
@@ -22,7 +22,7 @@ button {
   border-radius: 5px;
 }
 
-.render-chat {
+.render-chat1 {
   max-width: 350px;
   border-radius: 5px;
   padding: 20px;

@@ -44,10 +44,10 @@ function Messaging() {
 	}
 
 	return (
-		<div className="card">
+		<div className="card1">
 			<form onSubmit={onMessageSubmit}>
 				<h1>Messenger</h1>
-				<div className="name-field">
+				<div className="name-field1">
 					<TextField name="name" onChange={(e) => onTextChange(e)} value={state.name} label="Name" />
 				</div>
 				<div>
@@ -62,7 +62,7 @@ function Messaging() {
 				</div>
 				<button>Send Message</button>
 			</form>
-			<div className="render-chat">
+			<div className="render-chat1">
 				<h1>Chat Log</h1>
 				{renderChat()}
 			</div>
