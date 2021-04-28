@@ -47,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
     app: {
         marginBottom: '30px',
         backgroundColor: '#eb4034'
+    },
+    logoutButton: {
+        marginRight: 'auto',
+        marginLeft: 'auto'
     }
 }));
 

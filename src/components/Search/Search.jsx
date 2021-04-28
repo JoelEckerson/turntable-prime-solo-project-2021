@@ -38,6 +38,10 @@ function Search() {
         setName('');
     }
 
+    const clearSearch = () =>{
+        setName('');
+    }
+
     const typeRecord = (name) =>{
         console.log(name)
         // dispatch({type: 'FETCH_SEARCH_SAGA', payload: name});
@@ -70,12 +74,12 @@ function Search() {
                     value={name}
                     InputProps={{
                         startAdornment: (
-                            <InputAdornment position="start">
+                            <InputAdornment position="start" onClick={()=>searchRecords()}>
                                 <SearchOutlinedIcon />
                             </InputAdornment>
                         ),
                         endAdornment: (
-                            <InputAdornment postition="end">
+                            <InputAdornment postition="end" onClick={()=>clearSearch()}>
                                 <ClearOutlinedIcon />
                             </InputAdornment>
                         ),
