@@ -16,16 +16,33 @@ import {
   ListItem, 
   List,
   ListItemIcon, 
-  ListItemText
+  ListItemText,
+  Menu,
+  MenuItem,
 } from '@material-ui/core';
 import { PhotoCamera } from '@material-ui/icons';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import useStyles from '../styles';
 import { useState } from 'react';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
+import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 
+
+
+const useStyles2 = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
 function Nav(props) {
 
@@ -33,9 +50,28 @@ function Nav(props) {
   const classes = useStyles();
   const {history} = props;
   const [showDrawer, setShowDrawer] = useState(false);
+  const [auth, setAuth] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleChange = (event) => {
+    setAuth(event.target.checked);
+  };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const toggleDrawer = (open) => (event) => {
-      setShowDrawer({open})
+    setShowDrawer({open})
+  }
+
+  const sendToMessaging = () => {
+    history.push('/messaging');
   }
 
   let loginLinkData = {
@@ -106,6 +142,38 @@ function Nav(props) {
                     <Typography variant="h6">
                         TurnTable
                     </Typography>
+                    <IconButton edge="end" className={classes.menuButton} onClick={sendToMessaging} color="inherit" aria-label="menu">
+                    <ChatOutlinedIcon />
+                  </IconButton>
+                    <div>
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircleOutlinedIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+              </Menu>
+            </div>
                 </Toolbar>
             </AppBar>
             <div>

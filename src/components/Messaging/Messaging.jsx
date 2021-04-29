@@ -1,11 +1,15 @@
 import TextField from '@material-ui/core/TextField'
 import React, { useEffect, useRef, useState } from 'react'
 import io from 'socket.io-client'
+import { useSelector } from 'react-redux';
+import { Typography } from '@material-ui/core';
 import './Messaging.css'
 
 function Messaging() {
-	const [ state, setState ] = useState({ message: "", name: "" })
+	const user = useSelector((store) => store.user);
+	const [ state, setState ] = useState({ message: "", name: user.username })
 	const [ chat, setChat ] = useState([])
+	
 
 	const socketRef = useRef()
 
@@ -48,7 +52,8 @@ function Messaging() {
 			<form onSubmit={onMessageSubmit}>
 				<h1>Messenger</h1>
 				<div className="name-field1">
-					<TextField name="name" onChange={(e) => onTextChange(e)} value={state.name} label="Name" />
+					{/* <TextField name="name" onChange={(e) => onTextChange(e)} value={state.name} label="Name" /> */}
+					{/* <Typography><h2>{user.username}</h2></Typography> */}
 				</div>
 				<div>
 					<TextField
