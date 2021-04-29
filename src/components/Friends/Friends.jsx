@@ -12,12 +12,14 @@ import {
     ButtonBase
 } from '@material-ui/core';
 import useStyles from '../styles';
+import {useHistory} from 'react-router-dom';
 
 
 
 
 function Friends(props) {
 
+    const history = useHistory();
     const dispatch = useDispatch();
     const classes = useStyles();
     const friends = useSelector((store) => store.friends);
@@ -26,16 +28,13 @@ function Friends(props) {
         dispatch({ type: 'FETCH_COLLECTION_SAGA'});
     }, []);
 
-//     const clickCollection = (record) =>{
-//         dispatch({ type: 'FETCH_RECORD', payload: record });
-//         console.log('in clickRecord', record);
-//          history.push({
-//             pathname: '/record',
-//             state: {parent: 'COLLECTION'}
-//             });
-//    }
+    const clickFriendCollection = (friend) =>{
+        dispatch({ type: 'FETCH_FRIEND', payload: friend });
+        console.log('in clickFriendCollection', friend);
+        history.push('/friendcollection');
+    }
 
-    // onClick={event => {clickCollection(record)}}
+    
 
     if (friends[0] === undefined) {
         return (
@@ -64,7 +63,7 @@ function Friends(props) {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button size="small" color="primary">View Collection</Button>
+                                        <Button onClick={event => {clickFriendCollection(friend)}} size="small" color="primary">View Collection</Button>
                                         <Button size="small" color="primary">View Wantlist</Button>
                                     </CardActions>
                                 </Card>
