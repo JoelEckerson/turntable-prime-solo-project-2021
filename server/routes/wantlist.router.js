@@ -10,7 +10,7 @@ const router = express.Router();
     "wantlist".comments, "wantlist".rating, "album".artist, "album".album, 
     "album".genre, "album".year, "album".image_url FROM "wantlist" 
     JOIN "album" ON "wantlist".album_id = "album".id
-    WHERE "wantlist".user_id = $1;`;
+    WHERE "wantlist".user_id = $1 ORDER BY "wantlist".id DESC;`;
     console.log('in wantlist', req.params.id);
     pool.query(query, [req.params.id])
     .then( result => {

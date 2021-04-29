@@ -145,7 +145,7 @@ function Record(props) {
                                             {record.genre}
                                         </Typography>
                                         <Typography>
-                                            {record.ratin}
+                                            {record.rating}
                                         </Typography>
                                         <Typography>
                                             {record.comments}
