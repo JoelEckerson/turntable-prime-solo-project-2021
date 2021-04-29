@@ -23,6 +23,7 @@ function Friends(props) {
     const dispatch = useDispatch();
     const classes = useStyles();
     const friends = useSelector((store) => store.friends);
+    const user = useSelector((store) => store.user);
 
     useEffect(() => {
         dispatch({ type: 'FETCH_COLLECTION_SAGA'});
@@ -34,7 +35,11 @@ function Friends(props) {
         history.push('/friendcollection');
     }
 
-    
+    const clickFriendWantlist = (friend) =>{
+        dispatch({ type: 'FETCH_FRIEND', payload: friend });
+        console.log('in clickFriendWantlist', friend);
+        history.push('/friendwantlist');
+    }
 
     if (friends[0] === undefined) {
         return (
@@ -64,7 +69,7 @@ function Friends(props) {
                                     </CardContent>
                                     <CardActions>
                                         <Button onClick={event => {clickFriendCollection(friend)}} size="small" color="primary">View Collection</Button>
-                                        <Button size="small" color="primary">View Wantlist</Button>
+                                        <Button onClick={event => {clickFriendWantlist(friend)}} size="small" color="primary">View Wantlist</Button>
                                     </CardActions>
                                 </Card>
                             </Grid>

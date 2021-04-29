@@ -29,6 +29,7 @@ import Login from '../Login/Login';
 import Messaging from '../Messaging/Messaging';
 import Friends from '../Friends/Friends';
 import FriendCollection from '../FriendCollection/FriendCollection';
+import FriendWantlist from '../FriendWantlist/FriendWantlist';
 
 import { makeStyles } from '@material-ui/core';
 
@@ -104,6 +105,14 @@ function App() {
             path="/record"
           >
             <Record />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/friendwantlist"
+          >
+            <FriendWantlist />
           </ProtectedRoute>
 
           <ProtectedRoute

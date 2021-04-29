@@ -16,23 +16,23 @@ import { PhotoCamera } from '@material-ui/icons';
 import useStyles from '../styles';
 
 
-function FriendCollection() {
+function FriendWantlist() {
     const history = useHistory();
     const dispatch = useDispatch();
-    const collection = useSelector( store => store.collection); 
+    const wantlist = useSelector( store => store.wantlist); 
     const friend = useSelector((store) => store.friend);
     const classes = useStyles();
 
     useEffect(() => {
         dispatch({ 
-            type: 'FETCH_COLLECTION_SAGA',
+            type: 'FETCH_WANTLIST_SAGA',
             payload: {
                 userId: friend.id.toString() }
     });
     }, []);
 
 
-    if (collection[0] === undefined) {
+    if (wantlist[0] === undefined) {
         return (
             <h1>Records on the way!</h1>
         )
@@ -43,7 +43,7 @@ function FriendCollection() {
         <div>
                     <Container className={classes.cardGrid} maxWidth="md">
                         <Grid container spacing={4}>
-                            {collection.map((record)=>(
+                            {wantlist.map((record)=>(
                                 <Grid item key={record.album_id} xs={12} sm={6} md={4}>
                                 <Card className={classes.card}>
                                     <CardMedia /*onClick={event => {clickCollection(record)}} */
@@ -57,7 +57,7 @@ function FriendCollection() {
                                         </Typography>
                                         <Typography>
                                             {record.album}
-                                            in friend collection
+                                            in friend wantlist
                                         </Typography>
                                     </CardContent>
                                     {/* <CardActions>
@@ -76,4 +76,4 @@ function FriendCollection() {
 
 
 
-export default FriendCollection
+export default FriendWantlist
