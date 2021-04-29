@@ -48,6 +48,7 @@ function Search() {
     }
 
     const clickCollection = (record) =>{
+        record.album_id = record.id;
         dispatch({ type: 'FETCH_RECORD', payload: record });
         console.log('in clickRecord', record);
         history.push('/record');

@@ -53,12 +53,12 @@ function Nav(props) {
     onClick: () => {history.push("/"), setShowDrawer(false)}
 },
 {
-    text: 'Wantlist',
-    onClick: () => {history.push("/wantlist"); setShowDrawer(false)}
-},
-{
     text: 'Collection',
     onClick: () => {history.push("/collection"); setShowDrawer(false)}
+},
+{
+    text: 'Wantlist',
+    onClick: () => {history.push("/wantlist"); setShowDrawer(false)}
 },
 {
     text: 'Search',

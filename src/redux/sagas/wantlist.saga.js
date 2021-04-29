@@ -18,8 +18,19 @@ function* setWantlistRecord(action){
             const wantlist = yield axios.post('/api/wantlist/', action.payload );
             console.log('In setWantlistRecord() saga generator. wantlist data = ', wantlist.data);
             // yield put({ type: 'SET_WANTLIST_RECORD_SAGA', payload: wantlist.data });
-    } catch {
-        console.log('Error in setWantlistRecord() saga generator.');
+    } catch(err) {
+        console.log('Error in setWantlistRecord() saga generator.', err);
+    }
+}
+
+function* deleteWantlistRecord(action){
+    try {
+            console.log('In deleteWantlistRecord() saga generator.', action.payload );
+            const wantlist = yield axios.delete('/api/wantlist/' + action.payload.album_id );
+            console.log('In deleteWantlistRecord() saga generator. wantlist data = ', wantlist.data);
+            // yield put({ type: 'FETCH_RECORD', payload: wantlist.data });
+    } catch(err) {
+        console.log('Error in deleteWantlistRecord() saga generator.', err);
     }
 }
 

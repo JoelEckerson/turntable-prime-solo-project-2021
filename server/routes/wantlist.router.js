@@ -34,11 +34,15 @@ router.post('/', (req, res) => {
     });
 });
 
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
+router.delete('/:album_id/', (req, res) => {
+    console.log( 'in wantlist DELETE', req.params );
+    const queryText = `DELETE FROM "wantlist" WHERE "album_id" = $1 AND "user_id" = 1;`;
+    pool.query(queryText, [req.params.album_id])
+        .then(() => res.sendStatus(201))
+        .catch((err) => {
+        console.log('wantlist DELETE failed ', err);
+        res.sendStatus(500);
+    });
 });
 
 module.exports = router;

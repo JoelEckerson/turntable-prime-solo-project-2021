@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import { 
@@ -27,6 +27,11 @@ function Record(props) {
     const collection = useSelector( store => store.collection); 
     const wantlist = useSelector( store => store.wantlist);
 
+    const [foundRecordInCollection, setFoundRecordInCollection] = useState(false);
+
+   useEffect(() => {
+        switchCollectionButtons();
+    }, []);
 
 
     const clickPostCollection = (record) =>{
@@ -43,32 +48,61 @@ function Record(props) {
         // history.push('/record');
     }
 
-    const renderChat = () => {
-		return chat.map(({ name, message }, index) => (
-			<div key={index}>
-				<h3>
-					{name}: <span>{message}</span>
-				</h3>
-			</div>
-		))
-	}
-
     const clickDeleteCollection = () =>{
         record.user_id = user.id;
         dispatch({ type: 'DELETE_COLLECTION_RECORD_SAGA', payload: record });
         console.log('in clickDeleteCollection', record);
     }
 
-    const switchCollectionButtons = () => {
-        let foundRecord = false
+    const clickDeleteWantlist = () =>{
+        record.user_id = user.id;
+        dispatch({ type: 'DELETE_WANTLIST_RECORD_SAGA', payload: record });
+        console.log('in clickDeleteWantlist', record);
+    }
+
+
+
+
+  const switchCollectionButtons = () => {
+        console.log('in switchCollectionButtons', record);
+        console.log('in switchCollectionButtons collection', collection);
         collection.map((asdf)=>{
+         console.log('in switchCollectionButtons map', asdf.album_id);
+       if (record.album_id === asdf.album_id){
+                setFoundRecordInCollection(true);
+                console.log('in switchCollectionButtons found match ', record.album_id);}
+      })
+          console.log('in switchCollectionButtons foundRecordInCollection', foundRecordInCollection);
+    
+     }
+
+    // const switchCollectionButtons = () => {
+    //     let foundRecord = false;
+    //     console.log('in switchCollectionButtons', record);
+    //     collection.map((asdf)=>{
+    //     if (record.album_id === asdf.album_id)
+    //             foundRecord = true;
+    //             console.log('in switchCollectionButtons found match ', record.album_id);
+    //   })
+    //     if (foundRecord == true){
+    //         return <Button onClick={event => {clickDeleteCollection(record)}} size="small" color="primary">Delete from Collection</Button>
+    //     }else{
+    //         return <Button onClick={event => {clickPostCollection(record)}} size="small" color="primary">Add to Collection</Button>
+    //     }
+    // }
+
+    const switchWantlistButtons = () => {
+        let foundRecord = false
+        console.log('in switchWantlistButtons', record)
+        wantlist.map((asdf)=>{
         if (record.album_id === asdf.album_id)
-                foundRecord = true
-        })
-        if (foundRecord){
-            return <Button onClick={event => {clickDeleteCollection(record)}} size="small" color="primary">Delete from Collection</Button>
+                foundRecord = true;
+                console.log('in switchWantlistButtons found match ', record.album_id, 'asdf = ', asdf.album)
+       })
+        if (foundRecord == true){
+            return <Button onClick={event => {clickDeleteWantlist(record)}} size="small" color="primary">Delete from Wantlist</Button>
         }else{
-            return <Button onClick={event => {clickPostCollection(record)}} size="small" color="primary">Add to Collection</Button>
+            return <Button onClick={event => {clickPostWantlist(record)}} size="small" color="primary">Add to Wantlist</Button>
         }
     }
 
@@ -105,8 +139,14 @@ function Record(props) {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        {switchCollectionButtons()}
-                                        <Button onClick={event => {clickPostWantlist(record)}} size="small" color="primary">Add Wantlist</Button>
+                                        {foundRecordInCollection == true &&
+                                            <Button onClick={event => {clickDeleteCollection(record)}} size="small" color="primary">Delete from Collection</Button>}
+                                        {foundRecordInCollection == false &&
+                                            <Button onClick={event => {clickPostCollection(record)}} size="small" color="primary">Add to Collection</Button>}
+
+                                        {/* {switchCollectionButtons()} */}
+                                        {/* {switchWantlistButtons()} */}
+                                        {/* <Button onClick={event => {clickPostWantlist(record)}} size="small" color="primary">Add Wantlist</Button> */}
                                         {/* <Button onClick={event => {clickDelete(record)}} size="small" color="primary"> */}
                                     </CardActions>
                                 </Card>
