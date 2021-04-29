@@ -33,7 +33,10 @@ function wantlist() {
     const clickCollection = (record) =>{
         dispatch({ type: 'FETCH_RECORD', payload: record });
         console.log('in clickRecord', record);
-        history.push('/record');
+        history.push({
+            pathname: '/record',
+            state: {parent: 'WANTLIST'}
+            });
     }
 
     if (wantlist[0] === undefined) {

@@ -35,11 +35,11 @@ router.post('/', (req, res) => {
     });
 });
 
-router.delete('/:album_id/', (req, res) => {
+router.delete('/:album_id/:user_id', (req, res) => {
     console.log( 'in collection DELETE', req.params );
-    const queryText = `DELETE FROM "collection" WHERE "album_id" = $1 AND "user_id" = 1;`;
-    pool.query(queryText, [req.params.album_id])
-        .then(() => res.sendStatus(201))
+    const queryText = `DELETE FROM "collection" WHERE "album_id" = $1 AND "user_id" = $2;`;
+    pool.query(queryText, [req.params.album_id, req.params.user_id])
+        .then(() => res.sendStatus(200))
         .catch((err) => {
         console.log('Collection DELETE failed ', err);
         res.sendStatus(500);

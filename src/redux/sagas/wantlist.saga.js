@@ -26,7 +26,7 @@ function* setWantlistRecord(action){
 function* deleteWantlistRecord(action){
     try {
             console.log('In deleteWantlistRecord() saga generator.', action.payload );
-            const wantlist = yield axios.delete('/api/wantlist/' + action.payload.album_id );
+            const wantlist = yield axios.delete('/api/wantlist/' + action.payload.album_id + '/' + action.payload.user_id);
             console.log('In deleteWantlistRecord() saga generator. wantlist data = ', wantlist.data);
             // yield put({ type: 'FETCH_RECORD', payload: wantlist.data });
     } catch(err) {
@@ -37,6 +37,7 @@ function* deleteWantlistRecord(action){
 function* wantlistSaga() {
     yield takeLatest('FETCH_WANTLIST_SAGA', fetchWantlist);
     yield takeLatest('SET_WANTLIST_RECORD_SAGA', setWantlistRecord);
+    yield takeLatest('DELETE_WANTLIST_RECORD_SAGA', deleteWantlistRecord);
 }
 
 export default wantlistSaga;

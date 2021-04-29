@@ -1,6 +1,5 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {useState} from 'react';
 import { 
     Typography, 
     AppBar, 
@@ -27,6 +26,11 @@ function Search() {
     const user = useSelector((store) => store.user); 
     const classes = useStyles();
 
+   useEffect(() => {
+        dispatch({ type: 'FETCH_COLLECTION_SAGA', payload: {userId: user.id.toString()}});
+        dispatch({ type: 'FETCH_WANTLIST_SAGA', payload: {userId: user.id.toString()}});
+     }, []);
+
     const searchInput = () =>{
         console.log('in searchInput', event.target.value);
         setName(event.target.value);
@@ -51,7 +55,10 @@ function Search() {
         record.album_id = record.id;
         dispatch({ type: 'FETCH_RECORD', payload: record });
         console.log('in clickRecord', record);
-        history.push('/record');
+        history.push({
+            pathname: '/record',
+            state: {parent: 'SEARCH'}
+            });
     }
 
 

@@ -26,7 +26,7 @@ function* setCollectionRecord(action){
 function* deleteCollectionRecord(action){
     try {
             console.log('In deleteCollectionRecord() saga generator.', action.payload );
-            const collection = yield axios.delete('/api/collection/' + action.payload.album_id );
+            const collection = yield axios.delete('/api/collection/' + action.payload.album_id + '/' + action.payload.user_id);
             console.log('In deleteCollectionRecord() saga generator. collection data = ', collection.data);
             //  yield put({ type: 'FETCH_COLLECTION_SAGA', payload: action.payload });
    } catch(err) {

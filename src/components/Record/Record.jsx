@@ -28,9 +28,14 @@ function Record(props) {
     const wantlist = useSelector( store => store.wantlist);
 
     const [foundRecordInCollection, setFoundRecordInCollection] = useState(false);
+   const [foundRecordInWantlist, setFoundRecordInWantlist] = useState(false);
 
    useEffect(() => {
-        switchCollectionButtons();
+        console.log('Record component props: ', props);
+        // dispatch({ type: 'FETCH_COLLECTION_SAGA', payload: {userId: user.id.toString()}});
+        // dispatch({ type: 'FETCH_WANTLIST_SAGA', payload: {userId: user.id.toString()}});
+        recordInCollection();
+        recordInWantlist();
     }, []);
 
 
@@ -52,7 +57,7 @@ function Record(props) {
         record.user_id = user.id;
         dispatch({ type: 'DELETE_COLLECTION_RECORD_SAGA', payload: record });
         console.log('in clickDeleteCollection', record);
-    }
+   }
 
     const clickDeleteWantlist = () =>{
         record.user_id = user.id;
@@ -60,20 +65,28 @@ function Record(props) {
         console.log('in clickDeleteWantlist', record);
     }
 
-
-
-
-  const switchCollectionButtons = () => {
-        console.log('in switchCollectionButtons', record);
-        console.log('in switchCollectionButtons collection', collection);
+  const recordInCollection = () => {
+        console.log('in recordInCollection', record);
+        console.log('in recordInCollection collection', collection);
         collection.map((asdf)=>{
-         console.log('in switchCollectionButtons map', asdf.album_id);
+         console.log('in recordInCollection map', asdf.album_id);
        if (record.album_id === asdf.album_id){
                 setFoundRecordInCollection(true);
-                console.log('in switchCollectionButtons found match ', record.album_id);}
+                console.log('in recordInCollection found match ', record.album_id);}
       })
-          console.log('in switchCollectionButtons foundRecordInCollection', foundRecordInCollection);
-    
+          console.log('in recordInCollection foundRecordInCollection', foundRecordInCollection);  
+     }
+
+    const recordInWantlist = () => {
+        console.log('in recordInWantlist', record);
+        console.log('in recordInWantlist wantlist', wantlist);
+        wantlist.map((asdf)=>{
+         console.log('in recordInWantlist map', asdf.album_id);
+       if (record.album_id === asdf.album_id){
+                setFoundRecordInWantlist(true);
+                console.log('in recordInWantlist found match ', record.album_id);}
+      })
+          console.log('in recordInWantlist foundRecordInWantlist', foundRecordInWantlist);  
      }
 
     // const switchCollectionButtons = () => {
@@ -91,20 +104,20 @@ function Record(props) {
     //     }
     // }
 
-    const switchWantlistButtons = () => {
-        let foundRecord = false
-        console.log('in switchWantlistButtons', record)
-        wantlist.map((asdf)=>{
-        if (record.album_id === asdf.album_id)
-                foundRecord = true;
-                console.log('in switchWantlistButtons found match ', record.album_id, 'asdf = ', asdf.album)
-       })
-        if (foundRecord == true){
-            return <Button onClick={event => {clickDeleteWantlist(record)}} size="small" color="primary">Delete from Wantlist</Button>
-        }else{
-            return <Button onClick={event => {clickPostWantlist(record)}} size="small" color="primary">Add to Wantlist</Button>
-        }
-    }
+    // const switchWantlistButtons = () => {
+    //     let foundRecord = false
+    //     console.log('in switchWantlistButtons', record)
+    //     wantlist.map((asdf)=>{
+    //     if (record.album_id === asdf.album_id)
+    //             foundRecord = true;
+    //             console.log('in switchWantlistButtons found match ', record.album_id, 'asdf = ', asdf.album)
+    //    })
+    //     if (foundRecord == true){
+    //         return <Button onClick={event => {clickDeleteWantlist(record)}} size="small" color="primary">Delete from Wantlist</Button>
+    //     }else{
+    //         return <Button onClick={event => {clickPostWantlist(record)}} size="small" color="primary">Add to Wantlist</Button>
+    //     }
+    // }
 
     return (
         <div>
@@ -139,10 +152,14 @@ function Record(props) {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        {foundRecordInCollection == true &&
+                                         {/*(props.parent === 'COLLECTION' || props.parent === 'SEARCH') && */foundRecordInCollection == true &&
                                             <Button onClick={event => {clickDeleteCollection(record)}} size="small" color="primary">Delete from Collection</Button>}
-                                        {foundRecordInCollection == false &&
+                                        {/*(props.parent === 'COLLECTION' || props.parent === 'SEARCH') && */foundRecordInCollection == false &&
                                             <Button onClick={event => {clickPostCollection(record)}} size="small" color="primary">Add to Collection</Button>}
+                                        {/*(props.parent === 'WANTLIST' || props.parent === 'SEARCH') && */foundRecordInWantlist == true &&
+                                            <Button onClick={event => {clickDeleteWantlist(record)}} size="small" color="primary">Delete from Wantlist</Button>}
+                                        {/*(props.parent === 'WANTLIST' || props.parent === 'SEARCH') && */foundRecordInWantlist == false &&
+                                            <Button onClick={event => {clickPostWantlist(record)}} size="small" color="primary">Add to Wantlist</Button>}
 
                                         {/* {switchCollectionButtons()} */}
                                         {/* {switchWantlistButtons()} */}
