@@ -101,8 +101,8 @@ function Nav(props) {
     onClick: () => {history.push("/search"); setShowDrawer(false)}
 },
 {
-    text: 'Recommendations',
-    
+    text: 'Friends',
+    onClick: () => {history.push("/friends"); setShowDrawer(false)}
 },
 {
     text: 'LogOut',

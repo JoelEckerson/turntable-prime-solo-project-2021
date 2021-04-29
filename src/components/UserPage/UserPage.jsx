@@ -14,6 +14,7 @@ function UserPage() {
 
   return (
     <>
+    <img src={'images/turntable.png'} />
     <Typography>
       <div className="container">
       <h2>Welcome, {user.username}!</h2>

@@ -6,6 +6,7 @@ import wantlist from './wantlist.reducer';
 import search from './search.reducer';
 import record from './record.reducer';
 import collectionPost from './collectionpost.reducer';
+import friends from './friends.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   search, // will display search results
   record, // will fire when clicking into record
   collectionPost, // will fire post to collection
+  friends, // will get all of other user's data
 });
 
 export default rootReducer;

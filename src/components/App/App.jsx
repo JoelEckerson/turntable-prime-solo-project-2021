@@ -27,6 +27,7 @@ import Test from '../Test/Test';
 import Record from '../Record/Record';
 import Login from '../Login/Login';
 import Messaging from '../Messaging/Messaging';
+import Friends from '../Friends/Friends';
 
 import { makeStyles } from '@material-ui/core';
 
@@ -86,6 +87,14 @@ function App() {
             path="/messaging"
           >
             <Messaging />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/friends"
+          >
+            <Friends />
           </ProtectedRoute>
  
            <ProtectedRoute
