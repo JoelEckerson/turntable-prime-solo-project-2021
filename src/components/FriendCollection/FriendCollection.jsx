@@ -42,6 +42,7 @@ function FriendCollection() {
 
     return (
         <div>
+                <Typography align="center"><h2>{friend.username}'s Records!</h2></Typography>
                     <Container className={classes.cardGrid} maxWidth="md">
                         <Grid container spacing={4}>
                             {collection.map((record)=>(

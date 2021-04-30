@@ -29,6 +29,7 @@ import { withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -53,6 +54,7 @@ function Nav(props) {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -106,6 +108,7 @@ function Nav(props) {
 },
 {
     text: 'LogOut',
+    onClick: () => {dispatch({ type: 'LOGOUT' }); setShowDrawer(false)}
 }];
 
   return (

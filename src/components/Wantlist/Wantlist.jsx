@@ -48,6 +48,7 @@ function wantlist() {
 
     return (
         <div>
+            <Typography align="center"><h2>{user.username}'s Wantlist!</h2></Typography>
             <Container className={classes.cardGrid} maxWidth="md">
                         <Grid container spacing={4}>
                             {wantlist.map((record)=>(

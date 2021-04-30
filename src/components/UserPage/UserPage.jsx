@@ -15,7 +15,7 @@ function UserPage() {
   return (
     <>
     <img src={'images/turntable.png'} />
-    <Typography>
+    <Typography align="center">
       <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>With TurnTable you'll not only be able to keep and accurate list of all your vinyl; 
@@ -24,7 +24,7 @@ function UserPage() {
       {/* <p>Your ID is: {user.id}</p> */}
       </div>
       </Typography>
-      <Button className={classes.logoutButton} onClick={() => dispatch({ type: 'LOGOUT' })} variant="outlined" size="small" color="primary">Log Out</Button>
+      <Button align="center" className={classes.logoutButton} onClick={() => dispatch({ type: 'LOGOUT' })} variant="outlined" size="small" color="primary">Log Out</Button>
       {/* <LogOutButton className="btn" /> */}
     </>
   );
