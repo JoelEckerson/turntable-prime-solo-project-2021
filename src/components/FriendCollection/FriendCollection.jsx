@@ -14,6 +14,7 @@ import {
 } from '@material-ui/core';
 import { PhotoCamera } from '@material-ui/icons';
 import useStyles from '../styles';
+import Star from '../Star/Star';
 
 
 function FriendCollection() {
@@ -57,8 +58,8 @@ function FriendCollection() {
                                         </Typography>
                                         <Typography>
                                             {record.album}
-                                            in friend collection
                                         </Typography>
+                                        <Star existingRating={record.rating}/>
                                     </CardContent>
                                     {/* <CardActions>
                                         <Button size="small" color="primary">Add Collection</Button>

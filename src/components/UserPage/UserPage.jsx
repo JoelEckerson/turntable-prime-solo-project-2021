@@ -21,7 +21,7 @@ function UserPage() {
       <p>With TurnTable you'll not only be able to keep and accurate list of all your vinyl; 
         you'll also be able to connect with friends and trade records! 
         Update your Wantlist so you always know what to keep an eye out for when out browsing!</p>
-      <p>Your ID is: {user.id}</p>
+      {/* <p>Your ID is: {user.id}</p> */}
       </div>
       </Typography>
       <Button className={classes.logoutButton} onClick={() => dispatch({ type: 'LOGOUT' })} variant="outlined" size="small" color="primary">Log Out</Button>

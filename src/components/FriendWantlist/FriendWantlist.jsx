@@ -14,6 +14,7 @@ import {
 } from '@material-ui/core';
 import { PhotoCamera } from '@material-ui/icons';
 import useStyles from '../styles';
+import Star from '../Star/Star';
 
 
 function FriendWantlist() {
@@ -57,9 +58,9 @@ function FriendWantlist() {
                                         </Typography>
                                         <Typography>
                                             {record.album}
-                                            in friend wantlist
                                         </Typography>
-                                    </CardContent>
+                                         <Star existingRating={record.rating}/>
+                                   </CardContent>
                                     {/* <CardActions>
                                         <Button size="small" color="primary">Add Collection</Button>
                                         <Button size="small" color="primary">Add Wantlist</Button>

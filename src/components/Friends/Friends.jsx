@@ -57,7 +57,7 @@ function Friends(props) {
                                 <Card className={classes.cardFriends}>
                                     <CardMedia  
                                         className={classes.cardMedia}
-                                        image={friend.image_url}
+                                        image={'images/friend.png'}
                                     />
                                     <CardContent className={classes.cardContent}>
                                         <Typography gutterBottom variant="h5">

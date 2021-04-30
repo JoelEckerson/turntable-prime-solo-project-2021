@@ -42,14 +42,14 @@ function Record(props) {
         record.user_id = user.id;
         dispatch({ type: 'SET_COLLECTION_RECORD_SAGA', payload: record });
         console.log('in clickPostCollection', record);
-        // history.push('/record');
+        history.push('/collection');
     }
 
     const clickPostWantlist = (record) =>{
         record.user_id = user.id;
         dispatch({ type: 'SET_WANTLIST_RECORD_SAGA', payload: record });
         console.log('in clickPostWantlist', record);
-        // history.push('/record');
+        history.push('/wantlist');
     }
 
     const clickDeleteCollection = () =>{

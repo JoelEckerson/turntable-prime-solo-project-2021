@@ -112,10 +112,10 @@ function Search() {
                                             {record.album}
                                         </Typography>
                                     </CardContent>
-                                    <CardActions>
+                                    {/* <CardActions>
                                         <Button size="small" color="primary">Add Collection</Button>
                                         <Button size="small" color="primary">Add Wantlist</Button>
-                                    </CardActions>
+                                    </CardActions> */}
                                 </Card>
                             </Grid>
                             ))}
