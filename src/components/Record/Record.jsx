@@ -15,6 +15,7 @@ import {
 import { PhotoCamera } from '@material-ui/icons';
 import useStyles from '../styles';
 import { withRouter } from 'react-router-dom';
+import Star from '../Star/Star';
 
 
 
@@ -144,6 +145,7 @@ function Record(props) {
                                         <Typography>
                                             {record.genre}
                                         </Typography>
+                                        <Star />
                                         <Typography>
                                             {record.rating}
                                         </Typography>

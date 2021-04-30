@@ -31,6 +31,7 @@ import Friends from '../Friends/Friends';
 import FriendCollection from '../FriendCollection/FriendCollection';
 import FriendWantlist from '../FriendWantlist/FriendWantlist';
 
+
 import { makeStyles } from '@material-ui/core';
 
 import './App.css';
@@ -49,6 +50,7 @@ function App() {
       <div>
         <Nav />
         {/* <Drawer /> */}
+        
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />

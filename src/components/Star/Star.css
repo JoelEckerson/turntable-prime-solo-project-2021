@@ -1,0 +1,15 @@
+.StarApp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.StarInput {
+    display: none;
+}
+
+.StarStar {
+    cursor: pointer;
+    transition: color 200ms;
+}

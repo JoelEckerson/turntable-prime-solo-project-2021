@@ -110,3 +110,12 @@ input {
   margin: 5px;
   margin-bottom: 10px;
 }
+
+input[type="radio"] {
+    diplay: none;
+}
+
+.star {
+    cursor: pointer;
+    transition: color 200ms;
+}
