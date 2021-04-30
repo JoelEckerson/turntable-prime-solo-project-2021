@@ -33,8 +33,6 @@ function Record(props) {
 
    useEffect(() => {
         console.log('Record component props: ', props);
-        // dispatch({ type: 'FETCH_COLLECTION_SAGA', payload: {userId: user.id.toString()}});
-        // dispatch({ type: 'FETCH_WANTLIST_SAGA', payload: {userId: user.id.toString()}});
         recordInCollection();
         recordInWantlist();
     }, []);
@@ -90,36 +88,6 @@ function Record(props) {
           console.log('in recordInWantlist foundRecordInWantlist', foundRecordInWantlist);  
      }
 
-    // const switchCollectionButtons = () => {
-    //     let foundRecord = false;
-    //     console.log('in switchCollectionButtons', record);
-    //     collection.map((asdf)=>{
-    //     if (record.album_id === asdf.album_id)
-    //             foundRecord = true;
-    //             console.log('in switchCollectionButtons found match ', record.album_id);
-    //   })
-    //     if (foundRecord == true){
-    //         return <Button onClick={event => {clickDeleteCollection(record)}} size="small" color="primary">Delete from Collection</Button>
-    //     }else{
-    //         return <Button onClick={event => {clickPostCollection(record)}} size="small" color="primary">Add to Collection</Button>
-    //     }
-    // }
-
-    // const switchWantlistButtons = () => {
-    //     let foundRecord = false
-    //     console.log('in switchWantlistButtons', record)
-    //     wantlist.map((asdf)=>{
-    //     if (record.album_id === asdf.album_id)
-    //             foundRecord = true;
-    //             console.log('in switchWantlistButtons found match ', record.album_id, 'asdf = ', asdf.album)
-    //    })
-    //     if (foundRecord == true){
-    //         return <Button onClick={event => {clickDeleteWantlist(record)}} size="small" color="primary">Delete from Wantlist</Button>
-    //     }else{
-    //         return <Button onClick={event => {clickPostWantlist(record)}} size="small" color="primary">Add to Wantlist</Button>
-    //     }
-    // }
-
     return (
         <div>
             {console.log(record)}
@@ -130,7 +98,6 @@ function Record(props) {
                                     <CardMedia
                                         className={classes.cardMedia}
                                         image={record.image_url}
-                                        
                                     />
                                     <CardContent className={classes.cardContent}>
                                         <Typography gutterBottom variant="h5">
@@ -145,10 +112,7 @@ function Record(props) {
                                         <Typography>
                                             {record.genre}
                                         </Typography>
-                                        <Star />
-                                        <Typography>
-                                            {record.rating}
-                                        </Typography>
+                                        <Star existingRating={record.rating} user_id={user.id} album_id={record.album_id}/>
                                         <Typography>
                                             {record.comments}
                                         </Typography>
@@ -162,11 +126,6 @@ function Record(props) {
                                             <Button onClick={event => {clickDeleteWantlist(record)}} size="small" color="primary">Delete from Wantlist</Button>}
                                         {/*(props.parent === 'WANTLIST' || props.parent === 'SEARCH') && */foundRecordInWantlist == false &&
                                             <Button onClick={event => {clickPostWantlist(record)}} size="small" color="primary">Add to Wantlist</Button>}
-
-                                        {/* {switchCollectionButtons()} */}
-                                        {/* {switchWantlistButtons()} */}
-                                        {/* <Button onClick={event => {clickPostWantlist(record)}} size="small" color="primary">Add Wantlist</Button> */}
-                                        {/* <Button onClick={event => {clickDelete(record)}} size="small" color="primary"> */}
                                     </CardActions>
                                 </Card>
                             </Grid>

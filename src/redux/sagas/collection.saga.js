@@ -34,10 +34,22 @@ function* deleteCollectionRecord(action){
     }
 }
 
+function* updateCollectionRecord(action){
+    try {
+            console.log('In updateCollectionRecord() saga generator.', action.payload );
+            const collection = yield axios.put('/api/collection/' + action.payload.rating + '/' + action.payload.album_id + '/' + action.payload.user_id);
+            console.log('In updateCollectionRecord() saga generator. collection data = ', collection.data);
+            //  yield put({ type: 'FETCH_COLLECTION_SAGA', payload: action.payload });
+   } catch(err) {
+        console.log('Error in updateCollectionRecord() saga generator.', err);
+    }
+}
+
 function* collectionSaga() {
     yield takeLatest('FETCH_COLLECTION_SAGA', fetchCollection);
     yield takeLatest('SET_COLLECTION_RECORD_SAGA', setCollectionRecord);
     yield takeLatest('DELETE_COLLECTION_RECORD_SAGA', deleteCollectionRecord);
+    yield takeLatest('UPDATE_COLLECTION_RECORD_SAGA', updateCollectionRecord);
 }
 
 export default collectionSaga;
