@@ -47,8 +47,8 @@ function* updateCollectionRecord(action){
 
 function* collectionSaga() {
     yield takeLatest('FETCH_COLLECTION_SAGA', fetchCollection);
-    yield takeLatest('SET_COLLECTION_RECORD_SAGA', setCollectionRecord);
-    yield takeLatest('DELETE_COLLECTION_RECORD_SAGA', deleteCollectionRecord);
+    yield call('SET_COLLECTION_RECORD_SAGA', setCollectionRecord);
+    yield call('DELETE_COLLECTION_RECORD_SAGA', deleteCollectionRecord);
     yield takeLatest('UPDATE_COLLECTION_RECORD_SAGA', updateCollectionRecord);
 }
 

@@ -32,11 +32,9 @@ function wantlist() {
 
     const clickCollection = (record) =>{
         dispatch({ type: 'FETCH_RECORD', payload: record });
+        record.parent = 'WANTLIST';
         console.log('in clickRecord', record);
-        history.push({
-            pathname: '/record',
-            state: {parent: 'WANTLIST'}
-            });
+        history.push('/record');
     }
 
     if (wantlist[0] === undefined) {

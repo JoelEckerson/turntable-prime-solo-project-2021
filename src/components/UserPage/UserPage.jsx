@@ -24,7 +24,7 @@ function UserPage() {
       {/* <p>Your ID is: {user.id}</p> */}
       </div>
       </Typography>
-      <Button align="center" className={classes.logoutButton} onClick={() => dispatch({ type: 'LOGOUT' })} variant="outlined" size="small" color="primary">Log Out</Button>
+      {/* <Button align="center" className={classes.logoutButton} onClick={() => dispatch({ type: 'LOGOUT' })} variant="outlined" size="small" color="primary">Log Out</Button> */}
       {/* <LogOutButton className="btn" /> */}
     </>
   );

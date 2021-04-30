@@ -33,11 +33,9 @@ function Collection() {
 
     const clickCollection = (record) =>{
         dispatch({ type: 'FETCH_RECORD', payload: record });
+        record.parent = 'COLLECTION';
         console.log('in clickRecord', record);
-         history.push({
-            pathname: '/record',
-            state: {parent: 'COLLECTION'}
-            });
+        history.push('/record');
    }
 
     if (collection[0] === undefined) {

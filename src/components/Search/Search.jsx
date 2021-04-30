@@ -29,7 +29,8 @@ function Search() {
    useEffect(() => {
         dispatch({ type: 'FETCH_COLLECTION_SAGA', payload: {userId: user.id.toString()}});
         dispatch({ type: 'FETCH_WANTLIST_SAGA', payload: {userId: user.id.toString()}});
-     }, []);
+        searchRecords('~#!');
+       }, []);
 
     const searchInput = () =>{
         console.log('in searchInput', event.target.value);
@@ -53,12 +54,10 @@ function Search() {
 
     const clickCollection = (record) =>{
         record.album_id = record.id;
+        record.parent = 'SEARCH';
         dispatch({ type: 'FETCH_RECORD', payload: record });
         console.log('in clickRecord', record);
-        history.push({
-            pathname: '/record',
-            state: {parent: 'SEARCH'}
-            });
+        history.push('/record');
     }
 
 

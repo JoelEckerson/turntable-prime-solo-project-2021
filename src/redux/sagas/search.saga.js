@@ -7,8 +7,8 @@ function* fetchSearch(action){
             const search = yield axios.get('/api/search/' + action.payload );
             console.log('In searchSaga() saga generator. search data = ', search.data);
             yield put({ type: 'FETCH_SEARCH', payload: search.data });
-    } catch {
-        console.log('Error in searchSaga() saga generator.');
+    } catch(err) {
+        console.log('Error in searchSaga() saga generator: ', err);
     }
 }
 

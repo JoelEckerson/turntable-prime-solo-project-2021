@@ -36,8 +36,8 @@ function* deleteWantlistRecord(action){
 
 function* wantlistSaga() {
     yield takeLatest('FETCH_WANTLIST_SAGA', fetchWantlist);
-    yield takeLatest('SET_WANTLIST_RECORD_SAGA', setWantlistRecord);
-    yield takeLatest('DELETE_WANTLIST_RECORD_SAGA', deleteWantlistRecord);
+    yield call('SET_WANTLIST_RECORD_SAGA', setWantlistRecord);
+    yield call('DELETE_WANTLIST_RECORD_SAGA', deleteWantlistRecord);
 }
 
 export default wantlistSaga;
