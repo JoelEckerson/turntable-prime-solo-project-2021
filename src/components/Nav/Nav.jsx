@@ -69,7 +69,8 @@ function Nav(props) {
   };
 
   const toggleDrawer = (open) => (event) => {
-    setShowDrawer({open})
+    console.log('toggleDrawer = ', open);
+    setShowDrawer({open});
   }
 
   const sendToMessaging = () => {
@@ -179,10 +180,10 @@ function Nav(props) {
             </div>
                 </Toolbar>
             </AppBar>
-            <div>
+            <div onKeyDown={toggleDrawer(false)}>
             {/* this creates the Material UI drawer */}
-            <MUIDrawer open={showDrawer} className = {classes.drawer}>
-            <List>
+              <MUIDrawer open={showDrawer} onClose={toggleDrawer(false)} >
+                <List>
                 {itemsList.map((item, index) => {
                 const { text, icon, onClick } = item;
                 return (
@@ -191,7 +192,7 @@ function Nav(props) {
                     <ListItemText primary={text} />
                 </ListItem>
                 )})}
-            </List>
+              </List>
             </MUIDrawer>
         </div>
     </>
