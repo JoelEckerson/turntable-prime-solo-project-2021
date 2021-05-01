@@ -140,13 +140,14 @@ function Record(props) {
                                         <Typography>
                                             {record.genre}
                                         </Typography>
-                                        <Star existingRating={record.rating} user_id={user.id} album_id={record.album_id} parent={record.parent}/>
+                                            {(record.parent === 'COLLECTION' || record.parent === 'WANTLIST') &&
+                                                <Star existingRating={record.rating} user_id={user.id} album_id={record.album_id} parent={record.parent}/>}
                                         <Typography>
                                             {record.comments}
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                         {(record.parent === 'COLLECTION' || record.parent === 'SEARCH') && recordInCollection() == true &&
+                                        {(record.parent === 'COLLECTION' || record.parent === 'SEARCH') && recordInCollection() == true &&
                                             <Button onClick={event => {clickDeleteCollection(record)}} size="small" color="primary">Delete from Collection</Button>}
                                         {(record.parent === 'COLLECTION' || record.parent === 'SEARCH') && recordInCollection() == false &&
                                             <Button onClick={event => {clickPostCollection(record)}} size="small" color="primary">Add to Collection</Button>}

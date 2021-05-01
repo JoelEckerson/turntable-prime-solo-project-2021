@@ -37,13 +37,14 @@ function* deleteWantlistRecord(action){
 function* updateWantlistRecord(action){
     try {
             console.log('In updateWantlistRecord() saga generator.', action.payload );
-            const collection = yield axios.put('/api/wantlist/' + action.payload.rating + '/' + action.payload.album_id + '/' + action.payload.user_id);
-            console.log('In updateWantlistRecord() saga generator. wantlist data = ', collection.data);
+            const wantlist = yield axios.put('/api/wantlist/' + action.payload.rating + '/' + action.payload.album_id + '/' + action.payload.user_id);
+            console.log('In updateWantlistRecord() saga generator. wantlist data = ', wantlist.data);
             //  yield put({ type: 'FETCH_COLLECTION_SAGA', payload: action.payload });
    } catch(err) {
         console.log('Error in updateWantlistRecord() saga generator.', err);
     }
 }
+
 function* wantlistSaga() {
     yield takeLatest('FETCH_WANTLIST_SAGA', fetchWantlist);
     yield takeLatest('SET_WANTLIST_RECORD_SAGA', setWantlistRecord);

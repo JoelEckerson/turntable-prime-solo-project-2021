@@ -34,6 +34,17 @@ router.post('/', (req, res) => {
     });
 });
 
+router.put('/:rating/:album_id/:user_id', (req, res) => {
+    console.log( 'in wantlist PUT', req.params );
+    const queryText = `UPDATE "wantlist" SET "rating" = $1 WHERE "album_id" = $2 AND "user_id" = $3;`;
+    pool.query(queryText, [req.params.rating, req.params.album_id, req.params.user_id])
+        .then(() => res.sendStatus(200))
+        .catch((err) => {
+        console.log('Wantlist PUT failed ', err);
+        res.sendStatus(500);
+    });
+});
+
 router.delete('/:album_id/:user_id', (req, res) => {
     console.log( 'in wantlist DELETE', req.params );
     const queryText = `DELETE FROM "wantlist" WHERE "album_id" = $1 AND "user_id" = $2;`;
