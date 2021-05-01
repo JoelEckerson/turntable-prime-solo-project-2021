@@ -17,7 +17,10 @@ const Star = (props) => {
     const updateRating = (ratingValue) => {
         console.log('in updateRating', ratingValue);
         setRating(ratingValue);
-        dispatch({ type: 'UPDATE_COLLECTION_RECORD_SAGA', payload: {rating: ratingValue, album_id: props.album_id, user_id: props.user_id} });
+        if(props.parent === 'COLLECTION')
+            dispatch({ type: 'UPDATE_COLLECTION_RECORD_SAGA', payload: {rating: ratingValue, album_id: props.album_id, user_id: props.user_id} });
+        else if (props.parent === 'WANTLIST')
+            dispatch({ type: 'UPDATE_WANTLIST_RECORD_SAGA', payload: {rating: ratingValue, album_id: props.album_id, user_id: props.user_id} });       
     }
 
     return (

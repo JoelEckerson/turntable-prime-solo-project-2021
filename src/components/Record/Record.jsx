@@ -42,6 +42,7 @@ function Record(props) {
         dispatch({ type: 'SET_COLLECTION_RECORD_SAGA', payload: record });
         console.log('in clickPostCollection', record);
         dispatch({ type: 'FETCH_COLLECTION_SAGA', payload: {userId: user.id.toString()}});
+        // returnToParent();
     }
 
     const clickPostWantlist = (record) =>{
@@ -49,6 +50,7 @@ function Record(props) {
         dispatch({ type: 'SET_WANTLIST_RECORD_SAGA', payload: record });
         console.log('in clickPostWantlist', record);
         dispatch({ type: 'FETCH_WANTLIST_SAGA', payload: {userId: user.id.toString()}});
+        returnToParent();
      }
 
     const clickDeleteCollection = () =>{
@@ -56,6 +58,7 @@ function Record(props) {
         dispatch({ type: 'DELETE_COLLECTION_RECORD_SAGA', payload: record });
         console.log('in clickDeleteCollection', record);
         dispatch({ type: 'FETCH_COLLECTION_SAGA', payload: {userId: user.id.toString()}});
+        returnToParent();
   }
 
     const clickDeleteWantlist = () =>{
@@ -63,7 +66,26 @@ function Record(props) {
         dispatch({ type: 'DELETE_WANTLIST_RECORD_SAGA', payload: record });
         console.log('in clickDeleteWantlist', record);
         dispatch({ type: 'FETCH_WANTLIST_SAGA', payload: {userId: user.id.toString()}});
-    }
+         returnToParent();
+   }
+
+    const returnToParent = () => {
+        console.log('in returnToParent() with parent = ', record.parent);
+        switch (record.parent) {
+            case 'COLLECTION':
+                history.push('/collection');
+                break;
+            case 'WANTLIST':
+                history.push('/wantlist');
+                break;
+            case 'SEARCH':
+                // history.push('/search');
+                break;        
+             default:
+                 break;
+         }
+
+     }
 
   const recordInCollection = () => {
       let found = false;
@@ -93,6 +115,7 @@ function Record(props) {
          return found;  
      }
 
+
     return (
         <div>
             {console.log(record)}
@@ -117,7 +140,7 @@ function Record(props) {
                                         <Typography>
                                             {record.genre}
                                         </Typography>
-                                        <Star existingRating={record.rating} user_id={user.id} album_id={record.album_id}/>
+                                        <Star existingRating={record.rating} user_id={user.id} album_id={record.album_id} parent={record.parent}/>
                                         <Typography>
                                             {record.comments}
                                         </Typography>

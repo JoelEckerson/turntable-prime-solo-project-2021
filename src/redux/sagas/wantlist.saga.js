@@ -34,10 +34,21 @@ function* deleteWantlistRecord(action){
     }
 }
 
+function* updateWantlistRecord(action){
+    try {
+            console.log('In updateWantlistRecord() saga generator.', action.payload );
+            const collection = yield axios.put('/api/wantlist/' + action.payload.rating + '/' + action.payload.album_id + '/' + action.payload.user_id);
+            console.log('In updateWantlistRecord() saga generator. wantlist data = ', collection.data);
+            //  yield put({ type: 'FETCH_COLLECTION_SAGA', payload: action.payload });
+   } catch(err) {
+        console.log('Error in updateWantlistRecord() saga generator.', err);
+    }
+}
 function* wantlistSaga() {
     yield takeLatest('FETCH_WANTLIST_SAGA', fetchWantlist);
-    yield call('SET_WANTLIST_RECORD_SAGA', setWantlistRecord);
-    yield call('DELETE_WANTLIST_RECORD_SAGA', deleteWantlistRecord);
+    yield takeLatest('SET_WANTLIST_RECORD_SAGA', setWantlistRecord);
+    yield takeLatest('DELETE_WANTLIST_RECORD_SAGA', deleteWantlistRecord);
+    yield takeLatest('UPDATE_WANTLIST_RECORD_SAGA', updateWantlistRecord);
 }
 
 export default wantlistSaga;
