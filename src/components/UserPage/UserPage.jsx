@@ -18,8 +18,8 @@ function UserPage() {
     <Typography align="center">
       <div className="container">
       <h2>Welcome, {user.username}!</h2>
-      <p>With TurnTable you'll not only be able to keep and accurate list of all your vinyl; 
-        you'll also be able to connect with friends and trade records! 
+      <p>With TurnTable you'll not only be able to keep an accurate list of all your vinyl -- 
+        You'll also be able to connect with friends and trade records! 
         Update your Wantlist so you always know what to keep an eye out for when out browsing!</p>
       {/* <p>Your ID is: {user.id}</p> */}
       </div>
