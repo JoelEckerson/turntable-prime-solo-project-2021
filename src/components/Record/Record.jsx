@@ -42,7 +42,7 @@ function Record(props) {
         dispatch({ type: 'SET_COLLECTION_RECORD_SAGA', payload: record });
         console.log('in clickPostCollection', record);
         dispatch({ type: 'FETCH_COLLECTION_SAGA', payload: {userId: user.id.toString()}});
-        // returnToParent();
+        returnToParent();
     }
 
     const clickPostWantlist = (record) =>{
@@ -79,7 +79,7 @@ function Record(props) {
                 history.push('/wantlist');
                 break;
             case 'SEARCH':
-                // history.push('/search');
+                history.push('/search');
                 break;        
              default:
                  break;
