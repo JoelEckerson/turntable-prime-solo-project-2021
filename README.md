@@ -52,14 +52,14 @@ How does someone use this application? Tell a user story here.
 
 ## Built With
 
-*React
-*Redux
-*Javascript
-*Node.js
-*Express.js
-*PostgreSQL
-*Material-UI
-*CSS
+*React*
+*Redux*
+*Javascript*
+*Node.js*
+*Express.js*
+*PostgreSQL*
+*Material-UI*
+*CSS*
 
 
 ## Acknowledgement
