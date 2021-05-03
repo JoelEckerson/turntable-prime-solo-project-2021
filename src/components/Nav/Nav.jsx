@@ -33,6 +33,7 @@ import { useDispatch } from 'react-redux';
 
 
 
+
 const useStyles2 = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -45,11 +46,11 @@ const useStyles2 = makeStyles((theme) => ({
   },
 }));
 
-function Nav(props) {
+function Nav() {
 
   const user = useSelector((store) => store.user);
   const classes = useStyles();
-  const {history} = props;
+  const history = useHistory();
   const [showDrawer, setShowDrawer] = useState(false);
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -146,10 +147,12 @@ function Nav(props) {
                     <Typography variant="h6">
                         TurnTable
                     </Typography>
+                    <Grid container  justify="flex-end" alignItems="flex-end">
                     <IconButton edge="end" className={classes.menuButton} onClick={sendToMessaging} color="inherit" aria-label="menu">
                     <ChatOutlinedIcon />
                   </IconButton>
-                    <div>
+                  </Grid>
+                    {/* <div>
               <IconButton
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
@@ -177,12 +180,12 @@ function Nav(props) {
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
               </Menu>
-            </div>
+            </div> */}
                 </Toolbar>
             </AppBar>
             <div onKeyDown={toggleDrawer(false)}>
             {/* this creates the Material UI drawer */}
-              <MUIDrawer open={showDrawer} onClose={toggleDrawer(false)} >
+              <MUIDrawer open={showDrawer} onClose={(()=>toggleDrawer(false))} className = {classes.drawer}>
                 <List>
                 {itemsList.map((item, index) => {
                 const { text, icon, onClick } = item;

@@ -26,6 +26,7 @@ function LoginForm() {
 
   return (
     <form className="formPanel" onSubmit={login}>
+      <img src={'images/turntable.png'} />
       <h2>Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
