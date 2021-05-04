@@ -52,7 +52,7 @@ How does someone use this application? Tell a user story here.
 
 ## Built With
 
-*React*
+Markup : *React*
 *Redux*
 *Javascript*
 *Node.js*
