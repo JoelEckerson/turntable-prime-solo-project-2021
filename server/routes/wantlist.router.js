@@ -2,9 +2,6 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/*
- * GET route template
- */
  router.get('/:id', (req, res) =>{
     const query = `SELECT "wantlist".id AS "wantlist_id", "wantlist".album_id, "wantlist".user_id, 
     "wantlist".comments, "wantlist".rating, "album".artist, "album".album, 

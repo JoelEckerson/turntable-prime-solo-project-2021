@@ -26,11 +26,11 @@ function Search() {
     const user = useSelector((store) => store.user); 
     const classes = useStyles();
 
-   useEffect(() => {
+    useEffect(() => {
         dispatch({ type: 'FETCH_COLLECTION_SAGA', payload: {userId: user.id.toString()}});
         dispatch({ type: 'FETCH_WANTLIST_SAGA', payload: {userId: user.id.toString()}});
         searchRecords('~#!');
-       }, []);
+    }, []);
 
     const searchInput = () =>{
         console.log('in searchInput', event.target.value);
@@ -92,7 +92,7 @@ function Search() {
                         ),
                     }}
                 />
-          </form>
+        </form>
             <Container className={classes.cardGrid} maxWidth="md">
                         <Grid container spacing={4}>
                             {search.map((record)=>(
